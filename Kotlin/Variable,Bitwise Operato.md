@@ -1,7 +1,4 @@
-# 2024년 7월 4일
-
-
-### Kotlin 공부
+# Kotlin 공부
 + **변수 선언 방법**
      ```kotlin
         val key = 1:Int
