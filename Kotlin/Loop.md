@@ -1,7 +1,4 @@
-# 2024년 7월 9일
-
-
-### Kotlin 공부
+# Kotlin 공부
 + **when문**
      ```kotlin
         fun numberDescription(n: Int, max: Int = 100): String = when (n) {
