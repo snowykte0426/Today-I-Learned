@@ -48,7 +48,7 @@ DB에는 다양한 형태가 있다. 관계형, 키-값형, 객체형 등이 그
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FctM422%2FbtrOlLAF46v%2FWJwxSyjkBDddzEZc8dssM0%2Fimg.png" width="500" height="195"><br>
 + ### 1:1 (1 대 1)
     + 하나의 테이블이 **단 하나의 테이블과 연관관계**를 가지는 것이다.
-    + 하나의 테이블에 데이터를 다 넣지 않는 이유는 다음과 같다:
+    + 하나의 테이블에 데이터를 다 넣지 않는 이유는 다음과 같다.
         + 너무나 많은 칼럼이 있을 때
         + 보안상 민감한 정보가 있을 때
     ```SQL
