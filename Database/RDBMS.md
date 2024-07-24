@@ -1,12 +1,13 @@
-# RDBMS(관계형 데이터베이스)
+# 관계형 데이터베이스
 
-DB에는 다양한 형태가 있다. 관계형, 키-값형, 객체형 등이 그 주인공인데 이 문서에서는 **관계형 데이터베이스(RDBMS; Relational DataBase Management System)**에 관해 설명한다.
+DB에는 다양한 형태가 있다. 관계형, 키-값형, 객체형 등이 그 주인공인데 이 문서(TIL)에서는 **관계형 데이터베이스(RDB; Relational DataBase)** 에 관해 설명한다.
 
-## RDBMS란?
+## 관계형 데이터베이스란?
 ![RDBMS](https://velog.velcdn.com/images/choijaehyeokk/post/5d76cf78-1f24-44e8-bfef-565eff096a47/rdbms.png)
 
-+ RDBMS는 **행(Row, Record)** 과 **열(Column, Field)** 로 구성된 **표** 형식으로 데이터를 저장하며 데이터의 종속성을 **관계(Relation)** 로 표현하는 방식이다.
++ 관계형 데이터베이스는 **행(Row, Record)** 과 **열(Column, Field)** 로 구성된 **표** 형식으로 데이터를 저장하며 데이터의 종속성을 **관계(Relation)** 로 표현하는 방식이다.
 + 컬럼의 구조와 데이터의 관계는 테이블 **스키마(Schema)** 로 사전 정의된다.
++ 각 데이터의 **생성**,**수정**,**조회**,**삭제**를 위해 **SQL**을 사용한다
 
 ![Sheet](https://velog.velcdn.com/images%2Fchoijaehyeokk%2Fpost%2Fd0e4d03e-2b2f-4a15-9cfe-c0968d336b5e%2FUntitled.png)
 + 대표적인 RDBMS에는 **<span style="color:blue">My</span><span style="color:orange">SQL</span>**, **Postgre<span style="color:skyblue">SQL</span>**, **<span style="color:red">Oracle</span> Database** 등이 존재한다.
@@ -50,11 +51,65 @@ DB에는 다양한 형태가 있다. 관계형, 키-값형, 객체형 등이 그
     + 하나의 테이블에 데이터를 다 넣지 않는 이유는 다음과 같다:
         + 너무나 많은 칼럼이 있을 때
         + 보안상 민감한 정보가 있을 때
+    ```SQL
+    # 1 대 1 관계 설정 예제
 
+    CREATE TABLE User (
+        UserID INT PRIMARY KEY,
+        UserName VARCHER(50)
+    );
+    ```
+    ```SQL
+    CREATE TABLE UserProfile (
+        UserProfileID INT PRIMARY KEY,
+        UserID INT,
+        ProfileDescription VARCHAR(255),
+        FOREIGN KEY (UserID) REFERENCES User(UserID)
+    );
+    ```
 + ### 1:n (1 대 다)
     + 한 쪽 테이블의 레코드가 관계를 맺은 테이블의 **여러 레코드**와 연결되는 것이다.
     + **외래키**를 사용하고 **부모-자식** 관계로도 표현한다.
+    ```SQL
+    # 1 대 다 관계 설정 예제
 
+    CREATE TABLE Department (
+        DepartmentID INT PRIMARY KEY,
+        DepartmentName VARCHAR(50)
+    );
+    ```
+    ```SQL
+    CREATE TABLE Employee (
+        EmployeeID INT PRIMARY KEY,
+        EmployeeName VARCHAR(50),
+        DepartmentID INT,
+        FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID)
+    );
+    ```
 + ### n:n (다 대 다)
     + 양 쪽 엔티티(Entity) 모두에서 **1:n 관계**를 가지는 것이다.
     + 두 테이블의 대표키를 **칼럼으로 갖는 연결 테이블**을 생성해서 관리한다.
+    ```SQL
+    # 다 대 다 관계 설정 예제
+
+    CREATE TABLE Student (
+        StudentID INT PRIMARY KEY,
+        StudentName VARCHAR(50)
+    );
+    ```
+    ```SQL
+    CREATE TABLE Course (
+        CourseID INT PRIMARY KEY,
+        CourseName VARCHAR(50)
+    );
+    ```
+    ```SQL
+    CREATE TABLE Enrollment (
+        StudentID INT,
+        CourseID INT,
+        EnrollmentDate DATE,
+        PRIMARY KEY (StudentID, CourseID),
+        FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+        FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+    );
+    ```
