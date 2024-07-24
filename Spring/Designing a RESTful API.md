@@ -70,4 +70,4 @@
     - 대신에 **Accept Header**를 사용한다
     - **예시**: <code>GET</code> : <code>http://restapi.exam.com/orders/2</code>  
       <code>Accept: image/jpg</code>
-7. 리소스 간 **연관 관계**가 있는 경우 **<code>GET: /resource1/2/resource2</code>**와 같이 나타낼 수 있으며 이는 **<code>/리소스명/리소스ID/관계가 있는 다른 리소스명</code>**의 형태로 나타내는 것이다
+7. 리소스 간 **연관 관계**가 있는 경우 <b><code>GET: /resource1/2/resource2</code></b>와 같이 나타낼 수 있으며 이는 <b><code>/리소스명/리소스ID/관계가 있는 다른 리소스명</code></b>의 형태로 나타내는 것이다
