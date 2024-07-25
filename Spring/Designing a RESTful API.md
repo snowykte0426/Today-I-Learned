@@ -1,6 +1,6 @@
 # RESTful한 API 설계
 
-- RESTful한 API는 아래 사항을 **모두 지켜야 한다**
+- REST의 특징
     - **Client-Server**(클라이언트-서버 구조)
     - **Stateless**(상태없음)
     - **Cacheable**(캐시 처리 가능)
