@@ -54,14 +54,14 @@ public class Method {
         }
     ```
    - **지역 변수(local variable)**: 멤버 변수와는 구분되며 **메서드 안에서 선언되고 사용**되고 메서드가 종료되는 동시에 **소멸**한다.
-   ```java
-   class Variable {
-        public static void main(String[] args) {
-            int localVariable = 10;
-            System.out.println(localVariable); // 10 출력
-        }
-    }
-    ```
+        ```java
+        class Variable {
+                public static void main(String[] args) {
+                    int localVariable = 10;
+                    System.out.println(localVariable); // 10 출력
+                }
+            }
+         ```
 ## Object(객체)
 + 클래스에서 **정의**된 속성과 동작을 가지는 클래스의 **구현체**이다.
 + Java 공식 문서에선 **클래스의 인스턴스나 배열**이라고 정의하고 있다.
