@@ -58,7 +58,7 @@ public class Method {
         class Variable {
                 public static void main(String[] args) {
                     int localVariable = 10;
-                    System.out.println(localVariable); // 10 출력
+                    System.out.println(localVariable);
                 }
             }
         ```
