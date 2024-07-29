@@ -9,7 +9,6 @@ Java의 중요 문법인 **접근제어자(Access Modifier)**,**``static``**,**`
     |**private**|**같은 클래스**안에 있는 멤버들만 접근 가능|**클래스 멤버**|
     |**protected**|**같은 패키지 안의 모든 클래스와 상속받은 자식 클래스**에서만 사용 가능|**클래스 멤버**|
     |**default**|**명시적으로 표기하지는 않고 같은 패키지 안의 클래스**에서만 사용 가능|**클래스**,**클래스 멤버**|
-    |
     ```java
     public class Book {       // public 클래스
 
@@ -113,7 +112,6 @@ public class Person {
     |---|---|
     |**데이터 보호(Data Protection)**|외부로부터 클래스에 정의된 **속성**과 **기능**들을 **보호**|
     |**데이터 은닉(Data Hiding)**|**내부의 동작***을 감추고 외부에는 **필요한 부분만 노출**|
-    |
 
     <img src="https://i0.wp.com/blogcodestates.com/wp-content/uploads/2022/11/%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%8A%B9%EC%A7%95-%EC%BA%A1%EC%8A%90%ED%99%94.png?w=852&ssl=1" width=30%>
 
