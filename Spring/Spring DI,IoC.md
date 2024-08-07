@@ -16,7 +16,7 @@ Spring 프레임워크의 차별점 중 하나인 **DI(Dependency Injection; 의
         ```
         + Spring 에서 권장하는 방식이다.
         + 필수적으로 사용해야하는 의존성 없이 **인스턴스를 생성하지 못하도록 강제**할 수 있다.
-        + **``final``**을 사용하여 객체의 불변성을 강화할 수 있으며 컴파일 단계에서 **순환 의존성**을 알아챌 수 있다.
+        + **``final``** 을 사용하여 객체의 불변성을 강화할 수 있으며 컴파일 단계에서 **순환 의존성**을 알아챌 수 있다.
         + 인자가 많아지면 코드가 길어지며 개발자로 하여금 [SRP 원칙](https://github.com/snowykte0426/Today-I-Learned/blob/main/Object-Oriented%20Programming/SOLID.md)을 지키는데 도움을 줄 수 있다.
     + **Setter 주입(Setter Injection)**
         ```java
