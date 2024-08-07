@@ -1,5 +1,5 @@
 # **Build Tool**,**Directory Structure**
-이 문서(TIL)에서는 **빌드 도구**, **Spring 디렉터리 구조**을 알아본다.
+이 문서(TIL)에서는 **빌드 도구**, **디렉터리 구조**을 알아본다.
 ## 빌드 도구(Build Tool)
 + 소스 코드에서 애플리케이션 생성을 **자동화** 하는 도구(프로그램)을 **빌드 도구**라 칭한다.
 + 기존에 프로그래머가 직접 하던 빌드 작업을 프로그램이 대신 자동화 해준다고 생각하면 된다.
@@ -16,7 +16,7 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Apache_Maven_logo.svg/180px-Apache_Maven_logo.svg.png" width=250/>
 
     + Java 프로젝트들을 위한 **빌드 자동화 도구**로 Java 뿐 아니라 **C#**,**Ruby**,**Scala** 등의 언어로 개발된 프로젝트 역시 빌드하고 관리할 수 있다.
-    + 프로젝트들은 **오브젝트 모델(Project Object Model; POM)**을 사용하여 구성되며 **pom.xml** 파일에 저장된다.
+    + 프로젝트들은 **오브젝트 모델(Project Object Model; POM)** 을 사용하여 구성되며 **pom.xml** 파일에 저장된다.
     + **생명주기(Life Cycle)** 개념이 도입되어 빌드 순서등을 정의할 수 있다.
     ### **Gradle**
 
