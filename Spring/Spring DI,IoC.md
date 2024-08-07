@@ -17,7 +17,7 @@ Spring 프레임워크의 차별점 중 하나인 **DI(Dependency Injection; 의
         + Spring 에서 권장하는 방식이다.
         + 필수적으로 사용해야하는 의존성 없이 **인스턴스를 생성하지 못하도록 강제**할 수 있다.
         + **``final``**을 사용하여 객체의 불변성을 강화할 수 있으며 컴파일 단계에서 **순환 의존성**을 알아챌 수 있다.
-        + 인자가 많아지면 코드가 길어지며 개발자로 하여금 [SPR 원칙](https://github.com/snowykte0426/Today-I-Learned/blob/main/Object-Oriented%20Programming/SOLID.md)을 지키는데 도움을 줄 수 있다.
+        + 인자가 많아지면 코드가 길어지며 개발자로 하여금 [SRP 원칙](https://github.com/snowykte0426/Today-I-Learned/blob/main/Object-Oriented%20Programming/SOLID.md)을 지키는데 도움을 줄 수 있다.
     + **Setter 주입(Setter Injection)**
         ```java
         public class A {
@@ -39,7 +39,7 @@ Spring 프레임워크의 차별점 중 하나인 **DI(Dependency Injection; 의
         }
         ```
         + 어노테이션을 활용하여 **직접** 의존성을 주입하는 방식이다.
-        + 의존성을 주입하기 쉽기 때문에 위기감을 느끼기 어려워 [SPR 원칙](https://github.com/snowykte0426/Today-I-Learned/blob/main/Object-Oriented%20Programming/SOLID.md)을 지키기 어렵게 만든다.
+        + 의존성을 주입하기 쉽기 때문에 위기감을 느끼기 어려워 [SRP 원칙](https://github.com/snowykte0426/Today-I-Learned/blob/main/Object-Oriented%20Programming/SOLID.md)을 지키기 어렵게 만든다.
         + 불변성이 없기 때문에 객체가 **변할 수도 있다**.
         + 의존성이 겉으로 들어나지 않기 때문에 **숨은 의존성**만 늘어난다.
         + 해당 방법은 **읽기 쉽고,사용하기 편하다는 장점 외에는 단점 뿐이기에 사용을 지양**한다.
