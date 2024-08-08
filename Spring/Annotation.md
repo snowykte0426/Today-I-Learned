@@ -441,3 +441,105 @@ Java와 Spring 프레임워크에서 사용되는 **어노테이션(Annotation)*
     public class MainConfig {
     }
     ```
+### Lombok 어노테이션
++ **``@Getter``**
+    + 클래스의 필드에 대한 **getter 메서드**를 **자동으로 생성**한다.
+        ```java
+        @Getter
+        public class User {
+            private String name;
+            private int age;
+        }
+        ```
++ **``@Setter``**
+    + 클래스의 필드에 대한 **setter 메서드**를 **자동으로 생성**한다.
+        ```java
+        @Setter
+        public class User {
+            private String name;
+            private int age;
+        }
+        ```
++ **``@ToString``**
+    + 클래스의 **toString 메서드**를 자동으로 생성하며 모든 필드를 포함하거나 일부 필드만 포함시킬 수 있다.
+    ```java
+    @ToString
+    public class User {
+        private String username;
+        private int age;
+    }
+    ```
++ **``@EqualsAndHashCode``**
+    + **equals 메서드**와 **hashCode 메서드**를 자동으로 생성하며 기본적으로 모든 필드를 포함하지만 일부 필드만을 포함 시킬수도 있다.
+    ```java
+    @EqualsAndHashCode
+    public class User {
+        private String username;
+        private int age;
+    }
+    ```
++ **``@NoArgsConstructor``**,**``@AllArgsConstructor``**,**``@RequiredArgsConstructor``**
+    + ``@NoArgsConstructor``는 파라미터가 **없는** 기본 생성자를 **자동 생성**하고 ``@AllArgsConstructor``는 **모든 필드를 파라미터로 받는 생성자**를 생성,``@RequiredArgsConstructor``는 **``final``** 필드나 **``@Nonnull``** 이 선언된 필드를 파라미터로 받는 생성자를 생성한다.
+    ```java
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @RequiredArgsConstructor
+    public class User {
+        private Long id;
+        @NonNull private String username;
+        @NonNull private int age;
+    }
+    ```
++ **``@Data``**
+    + **``@Getter``**,**``@Setter``**,**``@ToString``**,**``@EqualsAndHashCode``**,**``@RequiredArgsConstructor``** 를 전부 포함하는 어노테이션이다.
+    ```java
+    @Data
+    public class User {
+        private Long id;
+        private String username;
+        private int age;
+    }
+    ```
++ **``@Builder``**
+    + **빌터 패턴(Builder Pattern)** 을 사용하여 객체를 생성하도록 한다.
+    ```java
+    @Builder
+    public class User {
+        private Long id;
+        private String username;
+        private int age;
+    }
+    ```
++ **``@Value``**
+    + **불변 객체**를 만들기 위해 사용되고 **``@Getter``**, **``@ToString``**, **``@EqualsAndHashCode``**, **``@AllArgsConstructor``**, **``@FieldDefaults(makeFinal=true, level=AccessLevel.PRIVATE)``** 를 모두 포함하며 모든 필드는 기본적으로 **``final``** 로 선언된다.
+    ```java
+    @Value
+    public class User {
+        private Long id;
+        private String username;
+        private int age;
+    }
+    ```
++ **``@NonNull``**
+    + **필드**,**메서드 파라미터**,**메서드 반환값**에 **Null 검사**를 추가하고 **``@RequiredArgsConstructor``** 과 함께 사용하여 필드의 Null 가능성을 배제할 수 있다.
+    ```java
+    public class User {
+        private Long id;
+        @NonNull private String username;
+        @NonNull private int age;
+
+        public void setUsername(@NonNull String username) {
+            this.username = username;
+        }
+    }
+    ```
++ **``@Slf4j``**,**``@Log``**,**``@Log4j``**,**``@Log4j2``**
+    + **로그 객체**를 자동으로 생성해 **로깅 기능**을 쉽게 사용할 수 있도록 한다.
+    ```java
+    @Slf4j
+    public class User {
+        public void doSomething() {
+            log.info("Doing something...");
+        }
+    }
+    ```
