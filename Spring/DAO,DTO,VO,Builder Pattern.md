@@ -18,6 +18,7 @@
     ### DAO vs Repository
     + DAO는 **DB와 상호작용**을 추상화하고 Repository는 **도메인 객체와 상호작용**을 추상화한다.
     + DAO는 **CRUD 작업**에 좀 더 치중하지만 Repositroy는 복잡한 **도메인 로직**과 **쿼리**를 포함할 수 있다.
+    + **Spring Data JPA**에서는 Repository가 DAO의 역할을 하기는 하지만 엄밀히 구분하자면 다른 것이다.
     + **빈약한 도메인 모델(도메인 객체에 비즈니스 로직이 거의 없거나 존재하지 않는 도메인 모델)** 에서 DAO와 Repository는 구분이 미약해질 수 있다.
         ```java
         @Repository
