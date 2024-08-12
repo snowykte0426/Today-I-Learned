@@ -33,3 +33,30 @@ Bean(빈)의 **Life Cycle(생명주기)** 와 **Scope(범위)** 에 대해 본 �
   + **``@PreDestroy``**
   + **DisposableBean** 인터페이스의 **``destroy()``** 메서드
   + **Bean 설정 파일**의 **``destroyMethod``** 속성
+## Bean 범위(Scope)
++ Spring Bean은 기본적으로 **싱글톤**으로 생성되기 떄문에 Scope란 Bean이 존재할 수 있는 **범위**를 뜻한다.
++ Spring은 다양한 Bean의 범위를 제공한다
+  + **싱글톤(Singleton)**: **기본 스코프**로 Spring 컨테이너가 시작할 때 부터 종료될 때까지 유지되는 **가장 큰 범위**의 스코프이다.
+  + **프로토타입(Prototype)**: Spring 컨테이너는 Bean의 **생성**과 **의존 관계 주입**까지만 관여하고 더 이상 **관리 하지 않는 매우 짧은 범위**의 스코프이다.
+  + **리퀘스트(Request)**: 웹 요청이 **들어오고 나갈 때까지** 유지되도록 하는 스코프이다.
+  + **세션(Session)**: 웹 세션이 **생성되고 종료될 때까지 유지되는 스코프이다.
+  + **애플리케이션(Application)**: 웹의 **서블릿 컨텍스트(Servlet Context)** 와 같은 범위로 유지되는 스코프이다.
++ Bean의 스코프는 다음과 같이 지정할 수 있다.
+  ```java
+  @Scope("prototype")  //Prototype 스코프 지정
+  @Component
+  public class NetworkClient {
+  }
+
+  @Configuration
+  class LifeCycleConfig {
+      @Scope("prototype")  //Prototype 스코프 지정
+      @Bean
+      public NetworkClient networkClient() {
+          final NetworkClient networkClient = new NetworkClient();
+          return networkClient;
+      }
+  }
+  ```
++ 프로토타입 스코프의 경우 생성 과정과 의존성 주입까지는 콜백 메서드가 작동하시만 이후 **종료 메서드**는 작동하지 않는다.
++ 싱글톤 스코프를 가진 Bean이 프로토타입 스코프를 가진 Bean을 주입받는 다면 프로토타입 Bean은 싱글톤 Bean에게 의존성이 주입되는 시점에만 프로토타입 Bean이 **조회**될 것이고 그렇게 된다면 이후 프로토타입 Bean은 같은 Bean이 계속 사용될 수 있기 때문에 **주의**하여야 한다.
