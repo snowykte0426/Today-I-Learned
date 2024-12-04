@@ -93,6 +93,7 @@
 ### AVL 트리
 + #### 균형 인수(Balance Factor; BF)
     + **왼쪽 서브트리의 높이**와 **오른쪽 서브트리의 높이**의 차를 칭한다
+   
 ![Balance Factor Formula](https://latex.codecogs.com/png.latex?\text{Balance%20Factor}%20=%20h_{\text{left}}%20-%20h_{\text{right}})
 
 + #### 정의
