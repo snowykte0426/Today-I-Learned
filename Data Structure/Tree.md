@@ -26,11 +26,7 @@
     + <b>힙(Heap)</b>은 **완전 이진 트리**의 대표적인 예이다
     + **포화 이진 트리** 역시 완전 이진 트리의 **하나**로 볼 수 있다
 
-<div align="center">
-
   ![LaTeX Equation 2](https://latex.codecogs.com/svg.latex?T%20%3D%20%5Cbigcup_%7Bi%3D0%7D%5E%7Bh%7D%20L_i)
-
-</div>
 
 + #### 균형 이진 트리(Balanced Binary Tree)
     + 모든 노드에서 **좌우 서브 트리**의 **높이 차**가 **1 이하**인 트리를 칭한다
@@ -97,11 +93,7 @@
 ### AVL 트리
 + #### 균형 인수(Balance Factor; BF)
     + **왼쪽 서브트리의 높이**와 **오른쪽 서브트리의 높이**의 차를 칭한다
-<div align="center">
-
 ![Balance Factor Formula](https://latex.codecogs.com/png.latex?\text{Balance%20Factor}%20=%20h_{\text{left}}%20-%20h_{\text{right}})
-
-</div>
 
 + #### 정의
     + **A**delson-**V**elskii와 **L**andis에 의해 제안된 트리로 항 상 **균형 트리**를 **보장**한다
