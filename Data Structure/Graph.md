@@ -64,7 +64,7 @@
     + 매 단계에서 집합에 포함되지 않은 정점 중 가중치가 최소인 정점을 찾아 거리를 확정하고 집합에 추가한다
     + 새로운 정점이 추가되면 **기존에 집합에 있던 정점들의 값도 영향을 받는다**
     + **탐욕적인(Greedy)** 알고리즘을 분류된다<br>
-    ![Dijkstra's Algorithm](https://latex.codecogs.com/png.latex?\text{Dijkstra's%20Algorithm:}%20\text{dist}[v]%20=%20\begin{cases}%200,%20\text{if%20}v%20=%20s\\\infty,%20\text{otherwise}\end{cases},%20u%20=%20\arg\min_{v%20\in%20Q}%20\text{dist}[v],%20\text{dist}[v]%20=%20\min(\text{dist}[v],%20\text{dist}[u]%20+%20w(u,%20v))
+    <image src="https://latex.codecogs.com/png.latex?\text{Dijkstra's%20Algorithm:}%20\text{dist}[v]%20=%20\begin{cases}%200,%20\text{if%20}v%20=%20s\\\infty,%20\text{otherwise}\end{cases},%20u%20=%20\arg\min_{v%20\in%20Q}%20\text{dist}[v],%20\text{dist}[v]%20=%20\min(\text{dist}[v],%20\text{dist}[u]%20+%20w(u,%20v)">
 + ### Floyd Algorithm
     + **모든 정점 사이의 최단 경로를 한번에 탐색**하는 알고리즘이다
     + 최단 경로 거리행렬을 이용하는데 이것의 초기값은 그래프의 **인접 행렬**이다
