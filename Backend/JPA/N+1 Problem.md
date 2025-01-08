@@ -60,3 +60,52 @@ fun findAllWithOpinions(): List<Article>
     + JPA는 페이징 처리를 위하여 쿼리에 <b>``LIMIT``</b>와 <b>``OFFSET``</b>을 추가하는데 ``Fetch Join``은 ``Join``을 위하여 연관된 **모든 데이터**를 가져오기 때문에 잘못된 결과를 초래할 수 있다.
     + 페이징 처리를 위하여 ``Article``을 10개만 우선적으로 가져오더라도 ``Fetch Join``으로 인하여 **제한 없이** 전부 가져와 결과적으로 ``Article``은 10개 지만 연관관계가 설정된 데이터는 제한없이 가져오며 **올바르지 않은 데이터가 출력되고 쿼리 결과가 커질 수 있다**.
     + ``Fetch Join``과 페이징을 동시에 사용하면 **Hibernate**는 RDB에서 모든 데이터를 로드한 후 **메모리에서 페이징을 시도** 하는데 이는 데이터의 규모가 커진다면 최악의 경우 **OutOfMemoryError**와 같은 치명적인 오류를 발생 시킬수도 있다.
+#### Batch Size
++ 지연 로딩시 프록시 객체를 조회할 때 <b>``WHERE IN``</b>문으로 한번에 조회하도록 하는 방법이다.
++ yml에서 전역적으로 설정하거나 <b>``@BatchSize``</b>를 이용하여 연관관계마다 다르게 적용할 수도 있다.
+```yml
+spring:
+    jpa:
+        properties:
+            default_batch_fetch_size: 100
+```
++ 1000 이상의 설정값은 잘 하지 않는데 너무 크게 하면 오히려 RDB에 부하를 줄 수도 있기 떄문이다.
+#### Entiy Graph
++ **지연 로딩을 즉시 로딩**으로 일부 바꾸는 방법이다.
+```kotlin
+@Entity
+class Article(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0,
+
+    val title: String,
+
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    val opinions: MutableList<Opinion> = mutableListOf()
+)
+
+@Entity
+class Opinion(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0,
+
+    val content: String,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "article_id")
+    val article: Article
+)
+```
+```kotlin
+@Repository
+interface ArticleRepository : JpaRepository<Article, Long> {
+    @EntityGraph(attributePaths = ["opinions"])
+    fun findAllWithOpinions(): List<Article>
+
+    @EntityGraph(attributePaths = ["opinions"])
+    findByIdWithOpinions(id: Long): Article?
+}
+```
++ 다음과 같이 ``opinions`` 칼럼을 즉시 가져오도록 어노테이션으로 간편히 설정할 수 있다.
