@@ -84,6 +84,46 @@ fun findAllWithOpinions(): List<Article>
 - 예를 들어, `Article` 10개를 페이징 처리하려고 해도 연관된 데이터는 제한 없이 모두 가져온다.
 - Hibernate는 모든 데이터를 로드한 후 메모리에서 페이징을 처리하므로 대량 데이터에서는 **OutOfMemoryError**와 같은 문제가 발생할 수 있다.
 
+<details>
+<summary>Fetch Join과 페이징 문제 해결 방법</summary>
+
+##### (1) 서브쿼리 활용
+- 상위 엔티티를 먼저 페이징 처리하고, 연관된 데이터를 조인하는 방식이다.
+```kotlin
+@Query("""
+    SELECT a
+    FROM Article a
+    WHERE a.id IN (
+        SELECT a2.id
+        FROM Article a2
+        ORDER BY a2.createdAt DESC
+    )
+""")
+fun findPagedArticles(): List<Article>
+```
+
+##### (2) DTO 매핑
+- 엔티티 대신 필요한 데이터를 DTO로 매핑하여 조회한다.
+```kotlin
+@Query("""
+    SELECT new com.example.dto.ArticleDto(a.id, a.title, o.content)
+    FROM Article a
+    JOIN a.opinions o
+    WHERE a.createdAt > :date
+""")
+fun findArticleDtos(pageable: Pageable): Page<ArticleDto>
+```
+
+##### (3) Batch Fetching
+- `@BatchSize` 또는 전역 설정으로 지연 로딩 데이터를 배치로 가져오는 방식이다.
+```kotlin
+@OneToMany(mappedBy = "article")
+@BatchSize(size = 10)
+var opinions: List<Opinion> = mutableListOf()
+```
+
+</details>
+
 ---
 
 ### Batch Size
@@ -159,4 +199,3 @@ interface ArticleRepository : JpaRepository<Article, Long> {
 N+1 문제는 JPA와 ORM 사용 시 성능 저하의 주요 원인이 될 수 있다. 이를 해결하기 위해 JPQL Fetch Join, Batch Size, Entity Graph와 같은 다양한 방법을 사용할 수 있다.
 
 Fetch Join은 강력한 도구이지만, 여러 컬렉션에 대해 적용하거나 페이징과 함께 사용할 경우 문제가 발생할 수 있다. 따라서 상황에 맞는 최적화 방법을 선택하고, 데이터베이스와 JPA의 동작 방식을 깊이 이해하는 것이 중요하다.
-
