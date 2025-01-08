@@ -52,3 +52,11 @@ fun findAllWithOpinions(): List<Article>
         <li>JPQL의 경우 Entity 객체 상에서 검사를 수행하기에 중복 데이터를 제거할 수 있다</li>
     </ul>
 </blockquote>
+
++ **여러 Collection에 대한 Fetch Join**
+    + 여러 ``Collection``에 대하여 ``Fetch Join``이 수행될 경우 각 컬렉션의 데이터가 <b>카르테시안 곱(Cartesian Product; RDB의 행 갯수가 n개라면 nⁿ개 만큼의 데이터가 조회되는 것)</b>의 형태나 **곱셈적**으로 조회될 수 있다.
+    + 이를 막기위해서 ``Fetch Join``은 하나에 ``Collection``에 대해서만 수행해어야 한다.
++ **페이징(Paging)** 금지
+    + JPA는 페이징 처리를 위하여 쿼리에 <b>``LIMIT``</b>와 <b>``OFFSET``</b>을 추가하는데 ``Fetch Join``은 ``Join``을 위하여 연관된 **모든 데이터**를 가져오기 때문에 잘못된 결과를 초래할 수 있다.
+    + 페이징 처리를 위하여 ``Article``을 10개만 우선적으로 가져오더라도 ``Fetch Join``으로 인하여 **제한 없이** 전부 가져와 결과적으로 ``Article``은 10개 지만 연관관계가 설정된 데이터는 제한없이 가져오며 **올바르지 않은 데이터가 출력되고 쿼리 결과가 커질 수 있다**.
+    + ``Fetch Join``과 페이징을 동시에 사용하면 **Hibernate**는 RDB에서 모든 데이터를 로드한 후 **메모리에서 페이징을 시도** 하는데 이는 데이터의 규모가 커진다면 최악의 경우 **OutOfMemoryError**와 같은 치명적인 오류를 발생 시킬수도 있다.
