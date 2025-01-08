@@ -30,3 +30,25 @@ class Article : BaseEntity() {
 @Query("SELECT DISTINCT a FROM Article a JOIN FETCH a.opinions")
 fun findAllWithOpinions(): List<Article>
 ```
++ **Fetch Join과 일반 Join의 차이**
+    + 근본적으론 ``Fetch Join``은 **ORM에서 사용을 전제**로 DB 스키마를  Entity로 변환해주고 <b>영속성 컨텍스트(Persistence Context)</b>에 **영속화**를 수행해준다는 차이점이 있다
+    + 위와 같은 이유로 한번 ``Fetch Join``을 이용하여 조회한 후 다시 Entity Graph를 탐색하더라도 조회하는 쿼리는 수행되지 않는다.
++ **Collection 연관관계에서 Fetch Join**
+    + ``Fetch Join``을 ``Collection``에 대해서 할 경우 <b>``1:n``</b> 관계이기 때문에 상위 칼럼은 중복되어 조회될 수 있다.
+
+    |Article|Opinion|
+    |---|---|
+    |Article_1|Opinion_1|
+    |Article_1|Opinion_2|
+    |Article_1|Opinion_3|
+    |Article_2|Opinion_1|
+    + 이런 데이터 중복 문제를 해결하기 위하여 <b>**Distinct**</b> 절을 사용하여야 한다.
+
+<h4><span>★</span> <b>JPQL과 SQL에서의 <code>Distinct</code>절 차이</b></h4>
+<blockquote>
+    <ul>
+        <li>SQL에서의 <code>Distinct</code>은 RDB에서 수행되며 <code>JOIN</code>되여 발생한 데이터에서 각 행이 일치하는지만 확인하여 중복을 검사한다</li>
+        <li>이 경우 <code>Article</code>은 겹칠 수 있지만 <code>Opinion</code>은 겹치지 않기 때문에 중복이 걸러지지 않을 수 있다</li>
+        <li>JPQL의 경우 Entity 객체 상에서 검사를 수행하기에 중복 데이터를 제거할 수 있다</li>
+    </ul>
+</blockquote>
