@@ -9,6 +9,7 @@ Start:May 5.2024
 ### [JPA](https://github.com/snowykte0426/Today-I-Learned/tree/main/Backend/JPA)
 + [N+1 Problem](https://github.com/snowykte0426/Today-I-Learned/blob/main/Backend/JPA/N%2B1%20Problem.mdx)
 + [QueryDSL](https://github.com/snowykte0426/Today-I-Learned/blob/main/Backend/JPA/QueryDSL.mdx)
++ [ReadOnly Transaction](https://github.com/snowykte0426/Today-I-Learned/blob/main/Backend/JPA/ReadOnly%20Transaction.md)
 ### [Spring](https://github.com/snowykte0426/Today-I-Learned/tree/main/Backend/Spring)
 + [Annotation](https://github.com/snowykte0426/Today-I-Learned/blob/main/Backend/Spring/Annotation.md)
 + [Bean LifeCycle,Bean Scope](https://github.com/snowykte0426/Today-I-Learned/blob/main/Backend/Spring/Bean%20LifeCycle%2CScope.md)
